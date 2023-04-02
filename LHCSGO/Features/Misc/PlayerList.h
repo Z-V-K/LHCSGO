@@ -2,5 +2,8 @@
 
 namespace PlayerList
 {
-    
+    void Initialize();
+
+    void OnUpdate();
+    void OnDraw();
 }

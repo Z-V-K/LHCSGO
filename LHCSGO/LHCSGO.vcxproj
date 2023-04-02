@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Features\Features.h" />
     <ClInclude Include="Features\Misc\PlayerList.h" />
     <ClInclude Include="Framework\Context.h" />
     <ClInclude Include="Framework\Hooks\InlineHook.h" />
@@ -186,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Features\Features.cpp" />
     <ClCompile Include="Features\Misc\PlayerList.cpp" />
     <ClCompile Include="Framework\Context.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>

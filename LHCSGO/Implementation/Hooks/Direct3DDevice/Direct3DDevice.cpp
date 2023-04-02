@@ -37,10 +37,12 @@ long __stdcall Direct3DDevice::hkPresent(
     if (!DirectXUI::initialized) {
         DirectXUI::Initialize();
     }
+
+    CallbackManager::Trigger(OnUpdate);
     
     DirectXUI::StartFrame();
 
-    CallbackManager::Trigger(OnPresent);
+    CallbackManager::Trigger(OnDraw);
     
     DirectXUI::EndFrame();
     

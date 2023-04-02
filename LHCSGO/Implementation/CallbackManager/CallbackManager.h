@@ -2,7 +2,8 @@
 
 enum CallbackType : unsigned
 {
-    OnPresent,
+    OnDraw,
+    OnUpdate,
 
     Size
 };
