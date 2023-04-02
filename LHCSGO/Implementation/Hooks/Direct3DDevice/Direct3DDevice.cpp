@@ -22,7 +22,7 @@ long __stdcall Direct3DDevice::hkPresent(
 ) {
     if (!hwndInitialized)
     {
-        dx9_device = ValveSDK::game_device;
+        dx9_device = g_device;
     
         D3DDEVICE_CREATION_PARAMETERS parameters;
         ZeroMemory(&parameters, sizeof(parameters));
@@ -37,8 +37,6 @@ long __stdcall Direct3DDevice::hkPresent(
     if (!DirectXUI::initialized) {
         DirectXUI::Initialize();
     }
-
-    CallbackManager::Trigger(OnUpdate);
     
     DirectXUI::StartFrame();
 

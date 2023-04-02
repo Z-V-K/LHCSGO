@@ -12,7 +12,7 @@ void DirectXUI::Initialize()
     ImGui::CreateContext();
 
     ImGui_ImplWin32_Init(Direct3DDevice::game_hwnd);
-    ImGui_ImplDX9_Init(ValveSDK::game_device);
+    ImGui_ImplDX9_Init(g_device);
     
     ImGui::StyleColorsDark();
 

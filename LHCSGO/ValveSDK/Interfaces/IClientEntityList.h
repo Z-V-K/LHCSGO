@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../Classes/BaseHandle.h"
-#include "../Classes/BaseEntity.h"
 
 class IClientNetworkable;
 class IClientEntity;
+class BaseEntity;
 
 class IClientEntityList
 {

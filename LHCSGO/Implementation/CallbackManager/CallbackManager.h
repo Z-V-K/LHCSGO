@@ -3,8 +3,16 @@
 enum CallbackType : unsigned
 {
     OnDraw,
-    OnUpdate,
-
+    OnPreFrameRenderStart,
+    OnPreFrameRenderEnd,
+    OnPreFrameNetUpdateStart,
+    OnPreFrameNetUpdateEnd,
+    OnPostFrameRenderStart,
+    OnPostFrameRenderEnd,
+    OnPostFrameNetUpdateStart,
+    OnPostFrameNetUpdateEnd,
+    OnFireEvent,
+    
     Size
 };
 

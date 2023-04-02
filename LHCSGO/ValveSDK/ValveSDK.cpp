@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ValveSDK.h"
 
+#include "Classes/BaseEntity.h"
+#include "ValveSDK/Interfaces/IEngineClient.h"
 #include "Framework/Memory/Memory.h"
 
 typedef void* (*CreateInterfaceFn)(const char *pName, int *pReturnCode);
@@ -26,12 +28,19 @@ T* GetInterface(const CreateInterfaceFn f, const char* szInterfaceVersion)
 
 void ValveSDK::Initialize()
 {
-    const auto engine_factory = GetModuleFactory(GetModuleHandleA("engine.dll"));
-    const auto client_factory = GetModuleFactory(GetModuleHandleA("client.dll"));
-    
+    const auto engine = GetModuleHandleA("engine.dll");
+    const auto client = GetModuleHandleA("client.dll");
+
+    const auto engine_factory = GetModuleFactory(engine);
+    const auto client_factory = GetModuleFactory(client);
+
+    base_client = GetInterface<IBaseClient>(client_factory, "VClient018");
     entity_list = GetInterface<IClientEntityList> (client_factory, "VClientEntityList003");
     engine_client = GetInterface<IEngineClient> (engine_factory, "VEngineClient014");
+    game_event_manager = GetInterface<IGameEventManager> (engine_factory, "GAMEEVENTSMANAGER002");
     
     const auto shaderapidx9 = GetModuleHandleA("shaderapidx9.dll");
-    game_device = **(IDirect3DDevice9***)(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+    game_device = **reinterpret_cast<IDirect3DDevice9***>(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+
+    local_player = *reinterpret_cast<LocalPlayer*>(Memory::PatternScan(client, "8B 0D ? ? ? ? 83 FF FF 74 07") + 2);
 }
