@@ -17,7 +17,8 @@ T* GetInterface(const CreateInterfaceFn f, const char* szInterfaceVersion)
     auto result = static_cast<T*>(f(szInterfaceVersion, nullptr));
 
     if(!result) {
-        throw std::runtime_error(std::string("[get_interface] Failed to GetOffset interface: ") + szInterfaceVersion);
+        printf("Failed to GetOffset in interface: %s", szInterfaceVersion);
+        return nullptr;
     }
 
     return result;
