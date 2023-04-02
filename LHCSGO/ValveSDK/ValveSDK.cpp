@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ValveSDK.h"
 
-std::shared_ptr<ValveSDK> g_sdk = std::make_shared<ValveSDK>();
+#include "Framework/Memory/Memory.h"
 
 typedef void* (*CreateInterfaceFn)(const char *pName, int *pReturnCode);
 typedef void* (*InstantiateInterfaceFn)();
@@ -23,7 +23,7 @@ T* GetInterface(const CreateInterfaceFn f, const char* szInterfaceVersion)
     return result;
 }
 
-bool GetD3D9Device(void** pTable, size_t Size)
+bool getD3D9Device(void** pTable, size_t Size)
 {
     // no ptable.
     if (!pTable)
@@ -58,15 +58,15 @@ bool GetD3D9Device(void** pTable, size_t Size)
     return true;
 }
 
-ValveSDK::ValveSDK()
+void ValveSDK::Initialize()
 {
     const auto engine_factory = GetModuleFactory(GetModuleHandleA("engine.dll"));
     const auto client_factory = GetModuleFactory(GetModuleHandleA("client.dll"));
-
+    
     entity_list = GetInterface<IClientEntityList> (client_factory, "VClientEntityList003");
     engine_client = GetInterface<IEngineClient> (engine_factory, "VEngineClient014");
-
-    void* d3d9Device[119];
-    while (!GetD3D9Device(d3d9Device, sizeof d3d9Device)) {}
-    game_device = reinterpret_cast<IDirect3DDevice9*>(d3d9Device);
+    
+    const auto shaderapidx9 = GetModuleHandleA("shaderapidx9.dll");
+    game_device = **(IDirect3DDevice9***)(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+    // game_device = (IDirect3DDevice9*) d3d9Device;
 }

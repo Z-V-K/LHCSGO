@@ -3,14 +3,11 @@
 #include "Interfaces/IClientEntityList.h"
 #include "Interfaces/IEngineClient.h"
 
-class ValveSDK
+namespace ValveSDK
 {
-public:
-    ValveSDK();
+    void Initialize();
 
-    IClientEntityList* entity_list;
-    IEngineClient* engine_client;
-    IDirect3DDevice9* game_device;
+    inline IClientEntityList* entity_list = nullptr;
+    inline IEngineClient* engine_client = nullptr;
+    inline IDirect3DDevice9* game_device = nullptr;
 };
-
-extern std::shared_ptr<ValveSDK> g_sdk;

@@ -1,20 +1,20 @@
 #include "pch.h"
-#include "VMTHook.h"
+#include "ShadowVMT.h"
 
-VMTHook::VMTHook()
+ShadowVMT::ShadowVMT()
     : class_base(nullptr), vftbl_len(0), new_vftbl(nullptr), old_vftbl(nullptr)
 {
 }
-VMTHook::VMTHook(void* base)
+ShadowVMT::ShadowVMT(void* base)
     : class_base(base), vftbl_len(0), new_vftbl(nullptr), old_vftbl(nullptr)
 {
 }
-VMTHook::~VMTHook()
+ShadowVMT::~ShadowVMT()
 {
     UnhookAll();
 }
 
-bool VMTHook::Setup(void* base /*= nullptr*/)
+bool ShadowVMT::setup(void* base /*= nullptr*/)
 {
     if(base != nullptr)
         class_base = base;
@@ -23,7 +23,7 @@ bool VMTHook::Setup(void* base /*= nullptr*/)
         return false;
 
     old_vftbl = *(std::uintptr_t**)class_base;
-    vftbl_len = EstimateVirtualTableLength(old_vftbl) * sizeof(std::uintptr_t);
+    vftbl_len = CalcVtableLength(old_vftbl) * sizeof(std::uintptr_t);
 
     if(vftbl_len == 0)
         return false;
@@ -33,9 +33,11 @@ bool VMTHook::Setup(void* base /*= nullptr*/)
     std::memcpy(&new_vftbl[1], old_vftbl, vftbl_len * sizeof(std::uintptr_t));
 
     try {
-        auto guard = ProtectGuard{ class_base, sizeof(std::uintptr_t), PAGE_READWRITE };
+        DWORD old;
+        VirtualProtect(class_base, sizeof(uintptr_t), PAGE_READWRITE, &old);
         new_vftbl[0] = old_vftbl[-1];
         *(std::uintptr_t**)class_base = &new_vftbl[1];
+        VirtualProtect(class_base, sizeof(uintptr_t), old, &old);
     } catch(...) {
         delete[] new_vftbl;
         return false;
@@ -43,7 +45,7 @@ bool VMTHook::Setup(void* base /*= nullptr*/)
 
     return true;
 }
-std::size_t VMTHook::EstimateVirtualTableLength(std::uintptr_t* vftbl_start)
+std::size_t ShadowVMT::CalcVtableLength(std::uintptr_t* vftbl_start)
 {
     MEMORY_BASIC_INFORMATION memInfo = { NULL };
     int m_nSize = -1;

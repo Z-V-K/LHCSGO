@@ -1,8 +1,11 @@
 #pragma once
 
-class Direct3DDevice
+namespace Direct3DDevice
 {
-public:
-    static long __stdcall hkEndScene(IDirect3DDevice9* device);
-    static long __stdcall hkReset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pPresentationParameters);
+    inline HWND game_hwnd = nullptr;
+    inline LPDIRECT3DDEVICE9 dx9_device = nullptr;
+
+    LRESULT __stdcall hkWndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    long __stdcall hkPresent(LPDIRECT3DDEVICE9 pDevice, RECT* pSourceRect, RECT* pDestRect,HWND hDestWindowOverride, RGNDATA* pDirtyRegion);
+    long __stdcall hkReset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pPresentationParameters);
 };

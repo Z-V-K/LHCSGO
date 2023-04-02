@@ -1,11 +1,8 @@
 #pragma once
-#include "Hooks/Hooks.h"
 
 class Core
 {
-public:
-    Hooks hooks;
-    
+public:    
     void Initialize(LPVOID base);
 };
 
