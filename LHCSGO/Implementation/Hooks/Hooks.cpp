@@ -6,12 +6,12 @@
 
 void Hooks::Initialize()
 {
-    direct3d_hook.setup(ValveSDK::game_device);
+    direct3d_hook.Setup(ValveSDK::game_device);
     direct3d_hook.HookIndex((int) HookIndex::Present, Direct3DDevice::hkPresent);
 }
 
 void Hooks::Remove()
 {
-    // direct3d_hook.Unhook();
+    direct3d_hook.UnhookAll();
 }
 

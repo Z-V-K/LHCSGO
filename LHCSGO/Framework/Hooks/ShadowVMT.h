@@ -7,7 +7,7 @@ public:
 	ShadowVMT(void* base);
 	~ShadowVMT();
 
-	bool setup(void* class_base = nullptr);
+	bool Setup(void* class_base = nullptr);
 
 	template<typename T>
 	void HookIndex(int index, T fun)

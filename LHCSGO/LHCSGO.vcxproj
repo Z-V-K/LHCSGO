@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Features\Misc\PlayerList.h" />
     <ClInclude Include="Framework\Context.h" />
     <ClInclude Include="Framework\Hooks\InlineHook.h" />
     <ClInclude Include="Framework\Hooks\ShadowVMT.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Framework\Memory\Memory.h" />
     <ClInclude Include="Framework\Memory\x86RetSpoof.h" />
     <ClInclude Include="Implementation\Bypass\RetAddrCheckBypass.h" />
+    <ClInclude Include="Implementation\CallbackManager\CallbackManager.h" />
     <ClInclude Include="Implementation\Core.h" />
     <ClInclude Include="Implementation\DirectX\DirectXUI.h" />
     <ClInclude Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.h" />
@@ -184,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Features\Misc\PlayerList.cpp" />
     <ClCompile Include="Framework\Context.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>Release\</AssemblerListingLocation>
@@ -262,6 +265,7 @@
     </ClCompile>
     <ClCompile Include="Framework\Memory\Memory.cpp" />
     <ClCompile Include="Implementation\Bypass\RetAddrCheckBypass.cpp" />
+    <ClCompile Include="Implementation\CallbackManager\CallbackManager.cpp" />
     <ClCompile Include="Implementation\Core.cpp" />
     <ClCompile Include="Implementation\DirectX\DirectXUI.cpp" />
     <ClCompile Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.cpp" />

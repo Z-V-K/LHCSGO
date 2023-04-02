@@ -14,7 +14,7 @@ ShadowVMT::~ShadowVMT()
     UnhookAll();
 }
 
-bool ShadowVMT::setup(void* base /*= nullptr*/)
+bool ShadowVMT::Setup(void* base)
 {
     if(base != nullptr)
         class_base = base;

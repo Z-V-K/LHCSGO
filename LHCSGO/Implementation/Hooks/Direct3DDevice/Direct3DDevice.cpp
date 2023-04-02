@@ -2,10 +2,11 @@
 #include "Direct3DDevice.h"
 
 #include "../Hooks.h"
-#include "../../../Framework/imgui/imgui.h"
-#include "../../../Implementation/DirectX/DirectXUI.h"
+#include "Framework/imgui/imgui.h"
+#include "Implementation/DirectX/DirectXUI.h"
 #include "Framework/imgui/implementation/imgui_impl_dx9.h"
 #include "ValveSDK/ValveSDK.h"
+#include "Implementation/CallbackManager/CallbackManager.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -38,12 +39,8 @@ long __stdcall Direct3DDevice::hkPresent(
     }
     
     DirectXUI::StartFrame();
-    
-    if(ImGui::Begin("LHCSGO"))
-    {
-        ImGui::Text("Hello world!");
-        ImGui::End();
-    }
+
+    CallbackManager::Trigger(OnPresent);
     
     DirectXUI::EndFrame();
     
