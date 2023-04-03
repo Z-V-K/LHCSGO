@@ -158,12 +158,53 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Features\Features.cpp" />
+    <ClCompile Include="Framework\Context.cpp" />
+    <ClCompile Include="Framework\imgui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\implementation\imgui_impl_dx11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\implementation\imgui_impl_dx9.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\imgui\implementation\imgui_impl_win32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Framework\Memory\Memory.cpp" />
+    <ClCompile Include="Implementation\Core.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ValveSDK\ValveSDK.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Features\Features.h" />
+    <ClInclude Include="Framework\Context.h" />
+    <ClInclude Include="Framework\Hooks\ShadowVMT.h" />
+    <ClInclude Include="Framework\imgui\imconfig.h" />
+    <ClInclude Include="Framework\imgui\imgui.h" />
+    <ClInclude Include="Framework\imgui\imgui_internal.h" />
+    <ClInclude Include="Framework\imgui\implementation\imgui_impl_dx11.h" />
+    <ClInclude Include="Framework\imgui\implementation\imgui_impl_dx9.h" />
+    <ClInclude Include="Framework\imgui\implementation\imgui_impl_win32.h" />
+    <ClInclude Include="Framework\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Framework\imgui\imstb_textedit.h" />
+    <ClInclude Include="Framework\imgui\imstb_truetype.h" />
+    <ClInclude Include="Framework\Memory\Memory.h" />
+    <ClInclude Include="Implementation\Core.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ValveSDK\ValveSDK.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
