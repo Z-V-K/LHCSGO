@@ -5,25 +5,6 @@
 #include "Interfaces/IBaseClient.h"
 #include "Interfaces/IGameEventManager.h"
 
-class LocalPlayer
-{
-    friend bool operator==(const LocalPlayer& lhs, void* rhs);
-public:
-    LocalPlayer() : m_local(nullptr) {}
-
-    operator bool() const { return *m_local != nullptr; }
-    operator BaseEntity*() const { return *m_local; }
-    constexpr auto get() const noexcept
-    {
-        return *m_local;
-    }
-
-    BaseEntity* operator->() const { return *m_local; }
-
-private:
-    BaseEntity** m_local;
-};
-
 namespace ValveSDK
 {
     void Initialize();
@@ -34,7 +15,7 @@ namespace ValveSDK
     inline IGameEventManager* game_event_manager = nullptr;
     inline IDirect3DDevice9* game_device = nullptr;
 
-    inline LocalPlayer local_player;
+    inline BaseEntity* local_player = nullptr;
 };
 
 #define g_baseclient    ValveSDK::base_client

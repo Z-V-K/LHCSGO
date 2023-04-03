@@ -40,7 +40,7 @@ void ValveSDK::Initialize()
     game_event_manager = GetInterface<IGameEventManager> (engine_factory, "GAMEEVENTSMANAGER002");
     
     const auto shaderapidx9 = GetModuleHandleA("shaderapidx9.dll");
-    game_device = **reinterpret_cast<IDirect3DDevice9***>(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+    game_device = **reinterpret_cast<IDirect3DDevice9***>(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);    
 
-    local_player = *reinterpret_cast<LocalPlayer*>(Memory::PatternScan(client, "8B 0D ? ? ? ? 83 FF FF 74 07") + 2);
+    local_player = entity_list->GetClientEntity(engine_client->GetLocalPlayer());
 }
