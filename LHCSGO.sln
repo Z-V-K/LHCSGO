@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LHCSGO", "LHCSGO\LHCSGO.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Injector", "Injector\Injector.vcxproj", "{B7980C30-E8A0-4994-B23D-36CDDB7A3AE5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LHCSGO2", "LHCSGO2\LHCSGO2.vcxproj", "{1E600F98-561D-4FDA-B87F-1A605A363E11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{B7980C30-E8A0-4994-B23D-36CDDB7A3AE5}.Release|x86.Build.0 = Release|Win32
 		{B7980C30-E8A0-4994-B23D-36CDDB7A3AE5}.Debug|x64.ActiveCfg = Release|Win32
 		{B7980C30-E8A0-4994-B23D-36CDDB7A3AE5}.Debug|x64.Build.0 = Release|Win32
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Debug|x64.ActiveCfg = Debug|x64
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Debug|x64.Build.0 = Debug|x64
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Debug|x86.ActiveCfg = Debug|Win32
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Debug|x86.Build.0 = Debug|Win32
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Release|x64.ActiveCfg = Release|x64
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Release|x64.Build.0 = Release|x64
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Release|x86.ActiveCfg = Release|x64
+		{1E600F98-561D-4FDA-B87F-1A605A363E11}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
