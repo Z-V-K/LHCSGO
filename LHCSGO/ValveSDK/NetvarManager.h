@@ -1,31 +1,31 @@
 #pragma once
 #include "Misc/Recv.h"
+#include "Framework/Memory/FNV1a.h"
 
 namespace NetvarManager {
-    
-    inline std::unordered_map<std::string, RecvTable*> tables { };
+
+    struct netvar_t
+    {
+        RecvProp* p_netvar;
+        uint16_t offset;
+    };
+
+    inline std::unordered_map<uint32_t, std::unordered_map<uint32_t, netvar_t>> netvar_map;
     
     void Initialize();
-    int GetOffset(const char* table_name, const char* prop_name);
-    int GetProperty(const char* table_name, const char* prop_name, RecvProp** prop = nullptr);
-    int GetProperty(RecvTable* recv_table, const char* prop_name, RecvProp** prop = nullptr);
-    RecvTable* GetTable(const char* table_name);
+
+    uint16_t GetOffset(uint32_t table_hash, uint32_t prop_hash);
+    uint16_t GetOffset(const std::string_view table_name, const std::string_view prop_name);
 }
 
-#define NETVAR(type, name, table, netvar)                           \
-type& name () const {                                          \
-static int _##name = NetvarManager::GetOffset(table, netvar);     \
-return *(type*)((uintptr_t)this + _##name);                 \
+#define NETVAR( type, func, table, var ) type& func() const \
+{ \
+static auto offset = NetvarManager::GetOffset( CT_FNV1A_HASH( table ), CT_FNV1A_HASH( var ) );\
+return *reinterpret_cast< type* >( reinterpret_cast< uintptr_t >( this ) + offset );\
 }
 
-#define NETVARADDOFFS(type, name, table, netvar, offs)                           \
-type& name () const {                                          \
-static int _##name = NetvarManager::GetOffset(table, netvar) + offs;     \
-return *(type*)((uintptr_t)this + _##name);                 \
-}
-
-#define PNETVAR(type, name, table, netvar)                           \
-type* name () const {                                          \
-static int _##name = NetvarManager::GetOffset(table, netvar);     \
-return (type*)((uintptr_t)this + _##name);                 \
+#define PNETVAR( type, func, table, var ) type* func() const \													 \
+{ \
+static auto offset = NetvarManager::GetOffset( CT_FNV1A_HASH( table ), CT_FNV1A_HASH( var ) ); \
+return reinterpret_cast< type* >( reinterpret_cast< uintptr_t >( this ) + offset ); \
 }

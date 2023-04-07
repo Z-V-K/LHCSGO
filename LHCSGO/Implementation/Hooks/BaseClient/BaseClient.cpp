@@ -2,9 +2,13 @@
 #include "BaseClient.h"
 #include "../Hooks.h"
 #include "Implementation/CallbackManager/CallbackManager.h"
+#include "ValveSDK/ValveSDK.h"
 
 void __fastcall BaseClient::hk_FrameStageNotify(void* thisPtr, void* edx, ClientFrameStage stage)
 {
+    if(!g_localplayer)
+        g_localplayer = g_entitylist->GetClientEntity(g_engine->GetLocalPlayer());
+    
     switch(stage)
     {
     case ClientFrameStage::FRAME_START:

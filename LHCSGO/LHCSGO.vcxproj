@@ -146,8 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Features\Features.h" />
+    <ClInclude Include="Features\FeaturesManager.h" />
     <ClInclude Include="Features\Misc\PlayerList.h" />
+    <ClInclude Include="Features\Visuals\ESP.h" />
     <ClInclude Include="Framework\Context.h" />
     <ClInclude Include="Framework\Hooks\InlineHook.h" />
     <ClInclude Include="Framework\Hooks\ShadowVMT.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Framework\imgui\imstb_rectpack.h" />
     <ClInclude Include="Framework\imgui\imstb_textedit.h" />
     <ClInclude Include="Framework\imgui\imstb_truetype.h" />
+    <ClInclude Include="Framework\Memory\FNV1a.h" />
     <ClInclude Include="Framework\Memory\Memory.h" />
     <ClInclude Include="Framework\Memory\x86RetSpoof.h" />
     <ClInclude Include="Implementation\Bypass\RetAddrCheckBypass.h" />
@@ -170,10 +172,13 @@
     <ClInclude Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.h" />
     <ClInclude Include="Implementation\Hooks\GameEventManager\GameEventManager.h" />
     <ClInclude Include="Implementation\Hooks\Hooks.h" />
+    <ClInclude Include="Implementation\Renderer\Renderer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ValveSDK\Classes\BaseEntity.h" />
     <ClInclude Include="ValveSDK\Classes\BaseHandle.h" />
+    <ClInclude Include="ValveSDK\Classes\BasePlayer.h" />
     <ClInclude Include="ValveSDK\Classes\ClientClass.h" />
+    <ClInclude Include="ValveSDK\Classes\EHandle.h" />
     <ClInclude Include="ValveSDK\Classes\GlobalVars.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec2.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec3.h" />
@@ -189,7 +194,10 @@
     <ClInclude Include="ValveSDK\Interfaces\IGameEvent.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventListener.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventManager.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IHandleEntity.h" />
     <ClInclude Include="ValveSDK\Interfaces\INetChannelInfo.h" />
+    <ClInclude Include="ValveSDK\Interfaces\ISurface.h" />
+    <ClInclude Include="ValveSDK\Misc\ISurfaceColor.h" />
     <ClInclude Include="ValveSDK\Misc\Recv.h" />
     <ClInclude Include="ValveSDK\Misc\VFunctionIndexes.h" />
     <ClInclude Include="ValveSDK\NetvarManager.h" />
@@ -197,8 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="Features\Features.cpp" />
+    <ClCompile Include="Features\FeaturesManager.cpp" />
     <ClCompile Include="Features\Misc\PlayerList.cpp" />
+    <ClCompile Include="Features\Visuals\ESP.cpp" />
     <ClCompile Include="Framework\Context.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>Release\</AssemblerListingLocation>
@@ -284,6 +293,7 @@
     <ClCompile Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.cpp" />
     <ClCompile Include="Implementation\Hooks\GameEventManager\GameEventManager.cpp" />
     <ClCompile Include="Implementation\Hooks\Hooks.cpp" />
+    <ClCompile Include="Implementation\Renderer\Renderer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -444,6 +454,7 @@
       <LinkCompiled>true</LinkCompiled>
       <AdditionalIncludeDirectories>;C:\Users\Fertheter\Documents\vcpkg\installed\x86-windows\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="ValveSDK\Classes\BasePlayer.cpp" />
     <ClCompile Include="ValveSDK\Classes\GlobalVars.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec2.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec3.cpp" />

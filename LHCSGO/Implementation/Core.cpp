@@ -4,7 +4,7 @@
 #include "../ValveSDK/ValveSDK.h"
 #include "Bypass/RetAddrCheckBypass.h"
 #include "Hooks/Hooks.h"
-#include "Features/Features.h"
+#include "Features/FeaturesManager.h"
 #include "ValveSDK/NetvarManager.h"
 #include "ValveSDK/Classes/BaseEntity.h"
 
@@ -20,5 +20,5 @@ void Core::Initialize(LPVOID base)
     RetAddrCheckBypass::Initialize();
     Hooks::Initialize();
 
-    Features::Initialize();
+    FeaturesManager::Initialize();
 }

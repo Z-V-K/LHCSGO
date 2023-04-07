@@ -4,6 +4,7 @@
 namespace PlayerList
 {
     void Initialize();
+    void Delete();
 
     void OnUpdate();
     void OnFireEvent(IGameEvent* event);

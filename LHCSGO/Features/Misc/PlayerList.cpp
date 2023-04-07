@@ -26,7 +26,6 @@ namespace PlayerList
 
         return nullptr;
     }
-
     
     void Initialize()
     {
@@ -35,9 +34,16 @@ namespace PlayerList
         CallbackManager::AddCallback(CallbackType::OnFireEvent, OnFireEvent);
     }
 
+    void Delete()
+    {
+        CallbackManager::RemoveCallback(CallbackType::OnPreFrameRenderStart, OnUpdate);
+        CallbackManager::RemoveCallback(CallbackType::OnDraw, OnDraw);
+        CallbackManager::RemoveCallback(CallbackType::OnFireEvent, OnFireEvent);
+    }
+
     void OnUpdate()
     {
-        if(!g_engine->IsInGame())
+        if(!g_engine->IsInGame() || !g_engine->IsConnected())
             return;
         
         for(int i = 0; i < g_engine->GetMaxClients(); i++)
@@ -76,6 +82,9 @@ namespace PlayerList
 
     void OnFireEvent(IGameEvent* event)
     {
+        if(!g_engine->IsConnected())
+            return;
+        
         if(!strcmp(event->GetName(), "round_start"))
         {
             player_records.clear();
@@ -85,6 +94,9 @@ namespace PlayerList
         {
             BaseEntity* target = g_entitylist->GetClientEntity(g_engine->GetPlayerForUserID(event->GetInt("userid")));
             BaseEntity* attacker = g_entitylist->GetClientEntity(g_engine->GetPlayerForUserID(event->GetInt("attacker")));
+
+            if(!target || !attacker)
+                return;
             
             if(attacker->IsAlly() && target->IsAlly())
             {
@@ -97,7 +109,7 @@ namespace PlayerList
 
     void OnDraw()
     {
-        if(!g_engine->IsInGame())
+        if(!g_engine->IsInGame() || !g_engine->IsConnected())
             return;
 
         ImGui::SetNextWindowSize({ 600, 0.f });

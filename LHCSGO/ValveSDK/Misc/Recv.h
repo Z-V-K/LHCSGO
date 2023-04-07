@@ -81,23 +81,3 @@ public:
     bool                    m_bInitialized;
     bool                    m_bInMainList;
 };
-
-inline RecvVarProxyFn RecvProp::GetProxyFn() const
-{
-    return m_ProxyFn;
-}
-
-inline void RecvProp::SetProxyFn(RecvVarProxyFn fn)
-{
-    m_ProxyFn = fn;
-}
-
-inline DataTableRecvVarProxyFn RecvProp::GetDataTableProxyFn() const
-{
-    return m_DataTableProxyFn;
-}
-
-inline void RecvProp::SetDataTableProxyFn(DataTableRecvVarProxyFn fn)
-{
-    m_DataTableProxyFn = fn;
-}
