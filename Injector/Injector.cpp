@@ -2,11 +2,9 @@
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <filesystem>
-#include <fstream>
-#include <iostream>
 #include <winternl.h>
 
-#define DLL_PATH "C:\\Users\\Kevin\\Desktop\\Dev\\LHCSGO\\Release\\LHCSGO.dll"
+#define DLL_PATH "E:\\LHCSGO\\Release\\LHCSGO.dll"
 #define PROCESS_NAME L"csgo.exe"
 
 typedef HMODULE(__stdcall* pLoadLibraryA)(LPCSTR);
