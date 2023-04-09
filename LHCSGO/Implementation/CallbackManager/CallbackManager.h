@@ -12,6 +12,7 @@ enum CallbackType : unsigned
     OnPostFrameNetUpdateStart,
     OnPostFrameNetUpdateEnd,
     OnFireEvent,
+    OnPaintTraverse,
     
     Size
 };

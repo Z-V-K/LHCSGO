@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "IAppSystem.h"
 #include "ValveSDK/Geometry/Vector/Vec2.h"
 #include "../Misc/ISurfaceColor.h"
 
@@ -61,7 +62,7 @@ struct IntRect
 	int p1, p2, p3, p4;
 };
 
-class ISurface
+class ISurface : public IAppSystem
 {
 public:
     virtual void          RunFrame() = 0;
@@ -79,7 +80,7 @@ public:
     virtual void          DrawSetApparentDepth(float f) = 0;
     virtual void          DrawClearApparentDepth() = 0;
     virtual void          DrawSetTextFont(HFONT_ font) = 0;
-    virtual void          DrawSetTextColor(int r, int g, int b, int a) = 0;
+    virtual void          DrawSetTextColor(int r, int g, int b, int a = 255) = 0;
     virtual void          DrawSetTextColor(ISurfaceColor col) = 0;
     virtual void          DrawSetTextPos(int x, int y) = 0;
     virtual void          DrawGetTextPos(int& x, int& y) = 0;
@@ -126,7 +127,7 @@ public:
     virtual void          SetTranslateExtendedKeys(bool state) = 0;
     virtual VPANEL  GetTopmostPopup() = 0;
     virtual void          SetTopLevelFocus(VPANEL panel) = 0;
-    virtual HFONT_   CreateFont_() = 0;
+    virtual HFONT_		CreateFont_() = 0;
     virtual bool          SetFontGlyphSet(HFONT_ font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags, int nRangeMin = 0, int nRangeMax = 0) = 0;
     virtual bool          AddCustomFontFile(const char *fontFileName) = 0;
     virtual int           GetFontTall(HFONT_ font) = 0;

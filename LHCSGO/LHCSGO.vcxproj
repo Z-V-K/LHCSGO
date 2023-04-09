@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\;$(ProjectDir)</IncludePath>
+    <OutDir>C:\LHCSGO\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -172,8 +173,14 @@
     <ClInclude Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.h" />
     <ClInclude Include="Implementation\Hooks\GameEventManager\GameEventManager.h" />
     <ClInclude Include="Implementation\Hooks\Hooks.h" />
+    <ClInclude Include="Implementation\Hooks\VGui\VGui.h" />
+    <ClInclude Include="Implementation\Menu\Menu.h" />
+    <ClInclude Include="Implementation\Menu\MenuEntry.h" />
+    <ClInclude Include="Implementation\Menu\MenuManager.h" />
     <ClInclude Include="Implementation\Renderer\Renderer.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ValveSDK\Classes\BaseAttributableItem.h" />
+    <ClInclude Include="ValveSDK\Classes\BaseCombatWeapon.h" />
     <ClInclude Include="ValveSDK\Classes\BaseEntity.h" />
     <ClInclude Include="ValveSDK\Classes\BaseHandle.h" />
     <ClInclude Include="ValveSDK\Classes\BasePlayer.h" />
@@ -183,6 +190,7 @@
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec2.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec3.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec4.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IAppSystem.h" />
     <ClInclude Include="ValveSDK\Interfaces\IBaseClient.h" />
     <ClInclude Include="ValveSDK\Interfaces\IClientEntity.h" />
     <ClInclude Include="ValveSDK\Interfaces\IClientEntityList.h" />
@@ -190,14 +198,19 @@
     <ClInclude Include="ValveSDK\Interfaces\IClientRenderable.h" />
     <ClInclude Include="ValveSDK\Interfaces\IClientThinkable.h" />
     <ClInclude Include="ValveSDK\Interfaces\IClientUnknown.h" />
+    <ClInclude Include="ValveSDK\Interfaces\ICollideable.h" />
     <ClInclude Include="ValveSDK\Interfaces\IEngineClient.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEvent.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventListener.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventManager.h" />
     <ClInclude Include="ValveSDK\Interfaces\IHandleEntity.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IModelInfo.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IModelInfoClient.h" />
     <ClInclude Include="ValveSDK\Interfaces\INetChannelInfo.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IPanel.h" />
     <ClInclude Include="ValveSDK\Interfaces\ISurface.h" />
     <ClInclude Include="ValveSDK\Misc\ISurfaceColor.h" />
+    <ClInclude Include="ValveSDK\Misc\Math.h" />
     <ClInclude Include="ValveSDK\Misc\Recv.h" />
     <ClInclude Include="ValveSDK\Misc\VFunctionIndexes.h" />
     <ClInclude Include="ValveSDK\NetvarManager.h" />
@@ -293,6 +306,10 @@
     <ClCompile Include="Implementation\Hooks\Direct3DDevice\Direct3DDevice.cpp" />
     <ClCompile Include="Implementation\Hooks\GameEventManager\GameEventManager.cpp" />
     <ClCompile Include="Implementation\Hooks\Hooks.cpp" />
+    <ClCompile Include="Implementation\Hooks\VGui\VGui.cpp" />
+    <ClCompile Include="Implementation\Menu\Menu.cpp" />
+    <ClCompile Include="Implementation\Menu\MenuEntry.cpp" />
+    <ClCompile Include="Implementation\Menu\MenuManager.cpp" />
     <ClCompile Include="Implementation\Renderer\Renderer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -459,6 +476,8 @@
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec2.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec3.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec4.cpp" />
+    <ClCompile Include="ValveSDK\Misc\ISurfaceColor.cpp" />
+    <ClCompile Include="ValveSDK\Misc\Math.cpp" />
     <ClCompile Include="ValveSDK\NetvarManager.cpp" />
     <ClCompile Include="ValveSDK\ValveSDK.cpp" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "BaseEntity.h"
 #include "EHandle.h"
+#include "BaseCombatWeapon.h"
 
 class BasePlayer : public BaseEntity
 {
@@ -22,6 +23,8 @@ public:
      NETVAR(int32_t,     m_fFlags,           "DT_BasePlayer", "m_fFlags")  
      NETVAR(int32_t,     m_iObserverMode,    "DT_BasePlayer", "m_iObserverMode")  
      NETVAR(int32_t*,    m_hViewModel,       "DT_BasePlayer", "m_hViewModel[0]")
+     
+     NETVAR(EHandle<BaseCombatWeapon>, m_hActiveWeapon, "DT_BaseCombatCharacter", "m_hActiveWeapon");
 
      /* CUSTOM IMPLEMENTATIONS */
      __forceinline bool IsAlive() { return m_lifeState() == 0; }

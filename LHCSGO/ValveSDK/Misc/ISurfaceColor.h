@@ -3,7 +3,8 @@
 class ISurfaceColor
 {
     unsigned char color[4];
-
+    
+public:
     ISurfaceColor() { *(int*) color = 0; }
     ISurfaceColor(int r, int g, int b, int a = 255) { SetColor(r, g, b, a); }
     ISurfaceColor(float r, float g, float b, float a = 1.f) { SetColor(255 * r, 255 * g, 255 * b, 255 * a); }
@@ -16,4 +17,9 @@ class ISurfaceColor
     }
     
     void SetColor(int r, int g, int b, int a) { color[0] = r; color[1] = g; color[2] = b; color[3] = a; }
+    
+    static ISurfaceColor GREEN;
+    static ISurfaceColor RED;
+    static ISurfaceColor WHITE;
+    static ISurfaceColor BLACK;
 };

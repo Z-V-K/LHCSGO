@@ -2,6 +2,7 @@
 
 #include "../Geometry/Vector/Vec3.h"
 #include "INetChannelInfo.h"
+#include "ValveSDK/Geometry/Vector/Vec4.h"
 
 struct model_t;
 struct client_textmessage_t;
@@ -46,6 +47,43 @@ struct Matrix3x4
 		};
 		float m[3][4];
 	};
+
+	const float* operator[](const int i) const { return m[i]; }
+};
+
+struct BrushSideInfo_t
+{
+    Vec4 plane;               // The plane of the brush side
+    unsigned short bevel;    // Bevel plane?
+    unsigned short thin;     // Thin?
+};
+
+class CPhysCollide;
+
+struct vcollide_t
+{
+    unsigned short solidCount : 15;
+    unsigned short isPacked : 1;
+    unsigned short descSize;
+    // VPhysicsSolids
+    CPhysCollide   **solids;
+    char           *pKeyValues;
+    void           *pUserData;
+};
+
+struct cmodel_t
+{
+    Vec3           mins, maxs;
+    Vec3           origin;        // for sounds or lights
+    int            headnode;
+    vcollide_t     vcollisionData;
+};
+
+struct csurface_t
+{
+    const char     *name;
+    short          surfaceProps;
+    unsigned short flags;         // BUGBUG: These are declared per surface, not per material, but this database is per-material now
 };
 
 typedef void(*pfnDemoCustomDataCallback)(uint8_t *pData, size_t iSize);

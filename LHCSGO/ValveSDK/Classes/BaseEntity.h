@@ -4,12 +4,13 @@
 #include "Framework/Memory/Memory.h"
 #include "ValveSDK/ValveSDK.h"
 #include "ValveSDK/Misc/VFunctionIndexes.h"
+#include "ValveSDK/Classes/EHandle.h"
 
 class BaseEntity : public IClientEntity
 {
 public:
-    __forceinline bool IsPlayer(){ return Memory::CallVirtual<bool>(this, BaseEntityVFunc::IsPlayer); }
-    __forceinline bool IsWeapon(){ return Memory::CallVirtual<bool>(this, BaseEntityVFunc::IsWeapon); }
+    __forceinline bool IsPlayer(){ return Memory::CallVirtual<bool>(this, (int) BaseEntityVFunc::IsPlayer); }
+    __forceinline bool IsWeapon(){ return Memory::CallVirtual<bool>(this, (int) BaseEntityVFunc::IsWeapon); }
 
     NETVAR(int32_t, m_flSimulationTime, "DT_BaseEntity", "m_flSimulationTime")
     NETVAR(int32_t, m_ubInterpolationFrame, "DT_BaseEntity", "m_ubInterpolationFrame")
@@ -24,9 +25,14 @@ public:
     NETVAR(int32_t, m_CollisionGroup, "DT_BaseEntity", "m_CollisionGroup")
     NETVAR(float, m_flElasticity, "DT_BaseEntity", "m_flElasticity")
     NETVAR(float, m_flShadowCastDistance, "DT_BaseEntity", "m_flShadowCastDistance")
-    NETVAR(int32_t, m_hOwnerEntity, "DT_BaseEntity", "m_hOwnerEntity")
+    NETVAR(EHandle<BaseEntity*>, m_hOwnerEntity, "DT_BaseEntity", "m_hOwnerEntity")
     NETVAR(int32_t, m_hEffectEntity, "DT_BaseEntity", "m_hEffectEntity")
     
     /* CUSTOM IMPLEMENTATIONS */
     __forceinline bool IsAlly() const { return g_localplayer->m_iTeamNum() == m_iTeamNum(); }
+    __forceinline Matrix3x4& m_rgflCoordinateFrame()
+    {
+        static uint32_t offset = NetvarManager::GetOffset("DT_BaseEntity", "m_CollisionGroup") - 0x30;
+        return *reinterpret_cast<Matrix3x4*>((uintptr_t) this + offset);
+    }
 };

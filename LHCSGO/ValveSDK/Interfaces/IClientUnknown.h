@@ -1,6 +1,9 @@
 #pragma once
 
-class IClientUnknown
+#include "IHandleEntity.h"
+
+class IClientUnknown : public IHandleEntity
 {
 public:
+    virtual ICollideable* GetCollideable() = 0;
 };

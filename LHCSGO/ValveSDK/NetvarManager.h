@@ -24,7 +24,7 @@ static auto offset = NetvarManager::GetOffset( CT_FNV1A_HASH( table ), CT_FNV1A_
 return *reinterpret_cast< type* >( reinterpret_cast< uintptr_t >( this ) + offset );\
 }
 
-#define PNETVAR( type, func, table, var ) type* func() const \													 \
+#define PNETVAR( type, func, table, var ) type* func() const \
 { \
 static auto offset = NetvarManager::GetOffset( CT_FNV1A_HASH( table ), CT_FNV1A_HASH( var ) ); \
 return reinterpret_cast< type* >( reinterpret_cast< uintptr_t >( this ) + offset ); \

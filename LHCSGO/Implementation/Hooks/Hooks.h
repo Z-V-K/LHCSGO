@@ -9,6 +9,9 @@ enum struct HookIndex : int
     /* BaseClient */
     FrameStageNotify = 37,
 
+    /* VGUI */
+    PaintTraverse = 41,
+
     /* D3DDEvice */
     Reset = 16,
     Present = 17,
@@ -20,6 +23,7 @@ namespace Hooks
     inline ShadowVMT direct3d_hook{ };
     inline ShadowVMT baseclient_hook{ };
     inline ShadowVMT gameeventmanager_hook{ };
+    inline ShadowVMT vguipanel_hook{ };
     
     void Initialize();
     void Remove();

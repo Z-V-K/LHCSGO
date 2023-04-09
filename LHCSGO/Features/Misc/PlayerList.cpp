@@ -3,6 +3,7 @@
 
 #include "Framework/imgui/imgui.h"
 #include "Implementation/CallbackManager/CallbackManager.h"
+#include "Implementation/Menu/MenuManager.h"
 #include "ValveSDK/ValveSDK.h"
 #include "ValveSDK/Classes/BaseEntity.h"
 
@@ -26,12 +27,20 @@ namespace PlayerList
 
         return nullptr;
     }
+
+    namespace Menu
+    {
+        bool enable = false;
+    }
     
     void Initialize()
     {
         CallbackManager::AddCallback(CallbackType::OnPreFrameRenderStart, OnUpdate);
         CallbackManager::AddCallback(CallbackType::OnDraw, OnDraw);
         CallbackManager::AddCallback(CallbackType::OnFireEvent, OnFireEvent);
+
+        const auto menu = MenuManager::CreateMenu("Player list", false);
+        menu->AddBoolean("Enable", &Menu::enable);
     }
 
     void Delete()
@@ -43,7 +52,7 @@ namespace PlayerList
 
     void OnUpdate()
     {
-        if(!g_engine->IsInGame() || !g_engine->IsConnected())
+        if(!g_engine->IsInGame() || !g_engine->IsConnected() || !Menu::enable)
             return;
         
         for(int i = 0; i < g_engine->GetMaxClients(); i++)
@@ -82,7 +91,7 @@ namespace PlayerList
 
     void OnFireEvent(IGameEvent* event)
     {
-        if(!g_engine->IsConnected())
+        if(!g_engine->IsConnected() || !Menu::enable)
             return;
         
         if(!strcmp(event->GetName(), "round_start"))
@@ -109,7 +118,7 @@ namespace PlayerList
 
     void OnDraw()
     {
-        if(!g_engine->IsInGame() || !g_engine->IsConnected())
+        if(!g_engine->IsInGame() || !g_engine->IsConnected() || !Menu::enable)
             return;
 
         ImGui::SetNextWindowSize({ 600, 0.f });

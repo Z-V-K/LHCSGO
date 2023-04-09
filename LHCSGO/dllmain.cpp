@@ -3,6 +3,13 @@
 #include "Implementation/Core.h"
 #include <iostream>
 
+#include "Framework/Context.h"
+#include "Implementation/Hooks/Hooks.h"
+
+HANDLE thread_handle;
+
+void DLLDetach();
+
 void CreateConsole()
 {
     if (!AllocConsole()) {
@@ -13,19 +20,27 @@ void CreateConsole()
     freopen("CONOUT$", "w", stderr);
 }
 
+
 DWORD WINAPI DLLAttach(LPVOID base)
 {
     CreateConsole();
     
     g_core->Initialize(base);
 
+    while(!g_ctx->unload)
+        Sleep(1000);
+
+    DLLDetach();
+
     return 0;
 }
 
-void WINAPI DLLDetach(HMODULE hModule)
+void DLLDetach()
 {
-    FreeLibraryAndExitThread(hModule, 0);
-    /* TODO */
+    printf("Deleting DLL!\n");
+    Hooks::Remove();
+    FreeConsole();
+    TerminateThread(thread_handle, 1);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -38,11 +53,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        CreateThread(nullptr, 0, DLLAttach, hModule, 0, nullptr);
+        thread_handle = CreateThread(nullptr, 0, DLLAttach, hModule, 0, nullptr);
         DisableThreadLibraryCalls(hModule);
-        break;
-    case DLL_PROCESS_DETACH:
-        DLLDetach(hModule);
         break;
     default:
         break;

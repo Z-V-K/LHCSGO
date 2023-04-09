@@ -10,6 +10,7 @@
 
 class BaseHandle
 {
+public:
     __forceinline BaseHandle() { m_Index = INVALID_EHANDLE_INDEX; }
     __forceinline BaseHandle(const BaseHandle &other) { m_Index = other.m_Index; }
     __forceinline BaseHandle(unsigned long value) { m_Index = value; }
