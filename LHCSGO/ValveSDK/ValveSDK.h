@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Classes/CSPlayerResource.h"
 #include "Interfaces/IEngineClient.h"
 #include "Interfaces/IClientEntityList.h"
 #include "Interfaces/IBaseClient.h"
@@ -7,6 +8,27 @@
 #include "Interfaces/IModelInfoClient.h"
 #include "Interfaces/ISurface.h"
 #include "Interfaces/IPanel.h"
+
+class BasePlayer;
+
+class LocalPlayer
+{
+    friend bool operator==(const LocalPlayer& lhs, void* rhs);
+public:
+    LocalPlayer() : m_local(nullptr) {}
+
+    operator bool() const { return *m_local != nullptr; }
+    operator BasePlayer*() const { return *m_local; }
+    constexpr auto get() noexcept
+    {
+        return *m_local;
+    }
+
+    BasePlayer* operator->() { return *m_local; }
+
+private:
+    BasePlayer** m_local;
+};
 
 namespace ValveSDK
 {
@@ -21,18 +43,23 @@ namespace ValveSDK
     inline ISurface* surface = nullptr;
     inline IModelInfoClient* model_info_client = nullptr;
     inline GlobalVars* global_vars = nullptr;
-
-    inline BaseEntity* local_player = nullptr;
+    inline CSPlayerResource** player_resource = nullptr;
 };
 
-#define g_baseclient    ValveSDK::base_client
-#define g_entitylist    ValveSDK::entity_list
-#define g_engine        ValveSDK::engine_client
-#define g_eventmanager  ValveSDK::game_event_manager
-#define g_device        ValveSDK::game_device
-#define g_vguipanel     ValveSDK::panel
-#define g_surface       ValveSDK::surface
-#define g_localplayer   ValveSDK::local_player
-#define g_modelinfo     ValveSDK::model_info_client
-#define g_globalvars    ValveSDK::global_vars
+#define g_baseclient     ValveSDK::base_client
+#define g_entitylist     ValveSDK::entity_list
+#define g_engine         ValveSDK::engine_client
+#define g_eventmanager   ValveSDK::game_event_manager
+#define g_device         ValveSDK::game_device
+#define g_vguipanel      ValveSDK::panel
+#define g_surface        ValveSDK::surface
+#define g_modelinfo      ValveSDK::model_info_client
+#define g_globalvars     ValveSDK::global_vars
+#define g_playerresource ValveSDK::player_resource
 
+__forceinline BasePlayer* GetLocalPlayer()
+{
+    return (BasePlayer*) g_entitylist->GetClientEntity(g_engine->GetLocalPlayer());
+}
+
+#define g_localplayer GetLocalPlayer()

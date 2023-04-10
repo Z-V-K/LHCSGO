@@ -3,8 +3,8 @@
 
 #include "Implementation/Renderer/Renderer.h"
 #include "ValveSDK/ValveSDK.h"
+#include "ValveSDK/Classes/BasePlayer.h"
 #include "ValveSDK/Interfaces/IEngineClient.h"
-#include "ValveSDK/Classes/BaseEntity.h"
 
 namespace MenuManager
 {
@@ -163,15 +163,15 @@ namespace MenuManager
     {
         static Vec2 base_pos { 300, 20 };
 
-        Renderer::DrawText("LHCSGO Beta version", { 225, 150, 225 }, base_pos - Vec2(0, 12));
-
-        player_info_t player_info;
-        g_engine->GetPlayerInfo(g_localplayer->EntIndex(), &player_info);
-        Renderer::DrawText(player_info.name, ISurfaceColor::WHITE, base_pos);
+        Renderer::DrawText("LHCSGO Beta version", ISurfaceColor::PINK, base_pos - Vec2(0, 12));
 
         char buff[64];
         sprintf(buff, "localplayer 0x%p", g_localplayer);
-        Renderer::DrawText(buff, ISurfaceColor::WHITE, base_pos + Vec2(50, 0));
+        Renderer::DrawText(buff, ISurfaceColor::WHITE, base_pos - Vec2(- 130, 12));
+
+        player_info_t player_info;
+        g_engine->GetPlayerInfo(g_localplayer->EntIndex(), &player_info);
+        Renderer::DrawText(player_info.name, ISurfaceColor::WHITE, base_pos + Vec2(130, 0));
     }
     
 }

@@ -4,7 +4,7 @@ enum class BaseEntityVFunc
 {
     Collideable = 3,
     IsPlayer = 157,
-    IsWeapon = 165,
+    IsWeapon = 166,
 };
 
 enum class VGuiPanelVFunc

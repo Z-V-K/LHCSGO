@@ -14,5 +14,6 @@ namespace Renderer
     void DrawFilledRect(const Vec2& pos_start, const Vec2& pos_end, const ISurfaceColor& color);
     void DrawOutlinedRect(const Vec2& pos_start, const Vec2& pos_end, const ISurfaceColor& color);
     void DrawLine(const Vec2& pos_start, const Vec2& pos_end, const ISurfaceColor& color);
+    void DrawCircle(const Vec2& pos, const int radius, const ISurfaceColor& color);
     Vec2 GetTextSize(const std::string_view& text);
 };

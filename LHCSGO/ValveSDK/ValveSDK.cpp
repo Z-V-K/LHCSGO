@@ -2,6 +2,7 @@
 #include "ValveSDK.h"
 
 #include "Classes/BaseEntity.h"
+#include "Classes/BasePlayer.h"
 #include "ValveSDK/Interfaces/IEngineClient.h"
 #include "Framework/Memory/Memory.h"
 
@@ -50,4 +51,5 @@ void ValveSDK::Initialize()
     game_device = **reinterpret_cast<IDirect3DDevice9***>(Memory::PatternScan(shaderapidx9, "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
 
     global_vars = **reinterpret_cast<GlobalVars***>(Memory::PatternScan(client, "A1 ? ? ? ? 5E 8B 40 10") + 1);
+    player_resource = *reinterpret_cast<CSPlayerResource***>(Memory::PatternScan(client, "A1 ? ? ? ? 89 44 24 60 85") + 1);
 }

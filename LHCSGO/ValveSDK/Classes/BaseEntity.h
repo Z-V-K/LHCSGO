@@ -10,7 +10,6 @@ class BaseEntity : public IClientEntity
 {
 public:
     __forceinline bool IsPlayer(){ return Memory::CallVirtual<bool>(this, (int) BaseEntityVFunc::IsPlayer); }
-    __forceinline bool IsWeapon(){ return Memory::CallVirtual<bool>(this, (int) BaseEntityVFunc::IsWeapon); }
 
     NETVAR(int32_t, m_flSimulationTime, "DT_BaseEntity", "m_flSimulationTime")
     NETVAR(int32_t, m_ubInterpolationFrame, "DT_BaseEntity", "m_ubInterpolationFrame")
@@ -27,12 +26,18 @@ public:
     NETVAR(float, m_flShadowCastDistance, "DT_BaseEntity", "m_flShadowCastDistance")
     NETVAR(EHandle<BaseEntity*>, m_hOwnerEntity, "DT_BaseEntity", "m_hOwnerEntity")
     NETVAR(int32_t, m_hEffectEntity, "DT_BaseEntity", "m_hEffectEntity")
+    NETVAR(Vec3, m_vecVelocity, "DT_BaseEntity", "m_vecVelocity[0]")
     
     /* CUSTOM IMPLEMENTATIONS */
-    __forceinline bool IsAlly() const { return g_localplayer->m_iTeamNum() == m_iTeamNum(); }
     __forceinline Matrix3x4& m_rgflCoordinateFrame()
     {
         static uint32_t offset = NetvarManager::GetOffset("DT_BaseEntity", "m_CollisionGroup") - 0x30;
         return *reinterpret_cast<Matrix3x4*>((uintptr_t) this + offset);
     }
+
+    bool IsAlly() const;
+    bool IsWeapon();
+    bool IsDefuseKit();
+    bool IsDroppedBomb();
+    const char* GetRank();
 };

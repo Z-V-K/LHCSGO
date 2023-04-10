@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Framework/Context.h"
+#include "Implementation/CallbackManager/CallbackManager.h"
 #include "Implementation/Hooks/Hooks.h"
 
 HANDLE thread_handle;
@@ -38,6 +39,7 @@ DWORD WINAPI DLLAttach(LPVOID base)
 void DLLDetach()
 {
     printf("Deleting DLL!\n");
+    CallbackManager::ClearCallbacks();
     Hooks::Remove();
     FreeConsole();
     TerminateThread(thread_handle, 1);

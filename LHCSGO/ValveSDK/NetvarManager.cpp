@@ -32,7 +32,7 @@ void NetvarManager::Initialize()
             if (!netvar_map[base][var].offset)
             {
                 netvar_map[base][var].p_netvar = prop;
-                netvar_map[base][var].offset = (uint16_t)(prop->m_Offset + offset);
+                netvar_map[base][var].offset = (uint32_t)(prop->m_Offset + offset);
             }
         }
     };
@@ -41,12 +41,12 @@ void NetvarManager::Initialize()
         store(client_data->m_pRecvTable->m_pNetTableName, client_data->m_pRecvTable, 0);
 }
 
-uint16_t NetvarManager::GetOffset(uint32_t table_hash, uint32_t prop_hash)
+uint32_t NetvarManager::GetOffset(uint32_t table_hash, uint32_t prop_hash)
 {
     return netvar_map[table_hash][prop_hash].offset;   
 }
 
-uint16_t NetvarManager::GetOffset(const std::string_view table_name, const std::string_view prop_name)
+uint32_t NetvarManager::GetOffset(const std::string_view table_name, const std::string_view prop_name)
 {
     return netvar_map[FNV1A_HASH(table_name.data())][FNV1A_HASH(prop_name.data())].offset;
 }

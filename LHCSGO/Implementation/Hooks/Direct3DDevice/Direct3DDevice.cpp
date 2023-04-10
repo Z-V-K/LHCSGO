@@ -40,15 +40,6 @@ long __stdcall Direct3DDevice::hkPresent(
     if (!DirectXUI::initialized) {
         DirectXUI::Initialize();
     }
-
-    if(MenuManager::menu_open)
-    {
-        DirectXUI::StartFrame();
-
-        CallbackManager::Trigger(OnDraw);
-    
-        DirectXUI::EndFrame();
-    }
     
     return Hooks::direct3d_hook.GetOg<decltype(&hkPresent)>((int) HookIndex::Present)(pDevice, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
 }

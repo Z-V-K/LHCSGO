@@ -183,8 +183,10 @@
     <ClInclude Include="ValveSDK\Classes\BaseCombatWeapon.h" />
     <ClInclude Include="ValveSDK\Classes\BaseEntity.h" />
     <ClInclude Include="ValveSDK\Classes\BaseHandle.h" />
+    <ClInclude Include="ValveSDK\Classes\BasePlantedC4.h" />
     <ClInclude Include="ValveSDK\Classes\BasePlayer.h" />
     <ClInclude Include="ValveSDK\Classes\ClientClass.h" />
+    <ClInclude Include="ValveSDK\Classes\CSPlayerResource.h" />
     <ClInclude Include="ValveSDK\Classes\EHandle.h" />
     <ClInclude Include="ValveSDK\Classes\GlobalVars.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec2.h" />
@@ -472,6 +474,7 @@
       <AdditionalIncludeDirectories>;C:\Users\Fertheter\Documents\vcpkg\installed\x86-windows\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="ValveSDK\Classes\BasePlayer.cpp" />
+    <ClCompile Include="ValveSDK\Classes\CSPlayerResource.cpp" />
     <ClCompile Include="ValveSDK\Classes\GlobalVars.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec2.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec3.cpp" />

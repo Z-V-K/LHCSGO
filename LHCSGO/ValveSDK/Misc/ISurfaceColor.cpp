@@ -5,3 +5,5 @@ ISurfaceColor ISurfaceColor::GREEN{ 30, 175, 20 };
 ISurfaceColor ISurfaceColor::RED{ 200, 0, 0 };
 ISurfaceColor ISurfaceColor::WHITE{ 255, 255, 255 };
 ISurfaceColor ISurfaceColor::BLACK{ 0, 0, 0 };
+ISurfaceColor ISurfaceColor::BLUE{ 0, 145, 255 };
+ISurfaceColor ISurfaceColor::PINK{ 225, 150, 225 };

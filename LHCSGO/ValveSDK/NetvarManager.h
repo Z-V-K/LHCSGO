@@ -7,15 +7,15 @@ namespace NetvarManager {
     struct netvar_t
     {
         RecvProp* p_netvar;
-        uint16_t offset;
+        uint32_t offset;
     };
 
     inline std::unordered_map<uint32_t, std::unordered_map<uint32_t, netvar_t>> netvar_map;
     
     void Initialize();
 
-    uint16_t GetOffset(uint32_t table_hash, uint32_t prop_hash);
-    uint16_t GetOffset(const std::string_view table_name, const std::string_view prop_name);
+    uint32_t GetOffset(uint32_t table_hash, uint32_t prop_hash);
+    uint32_t GetOffset(const std::string_view table_name, const std::string_view prop_name);
 }
 
 #define NETVAR( type, func, table, var ) type& func() const \

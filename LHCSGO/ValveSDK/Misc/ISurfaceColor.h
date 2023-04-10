@@ -22,4 +22,6 @@ public:
     static ISurfaceColor RED;
     static ISurfaceColor WHITE;
     static ISurfaceColor BLACK;
+    static ISurfaceColor BLUE;
+    static ISurfaceColor PINK;
 };

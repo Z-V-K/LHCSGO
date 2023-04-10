@@ -42,6 +42,12 @@ namespace Renderer
         g_surface->DrawSetColor(color);
         g_surface->DrawLine((int) pos_start.x, (int) pos_start.y, (int) pos_end.x, (int) pos_end.y);
     }
+
+    void DrawCircle(const Vec2& pos, const int radius, const ISurfaceColor& color)
+    {
+        g_surface->DrawSetColor(color);
+        g_surface->DrawOutlinedCircle(pos.x, pos.y, (int)radius, 50);
+    }
     
     Vec2 GetTextSize(const std::string_view& text)
     {

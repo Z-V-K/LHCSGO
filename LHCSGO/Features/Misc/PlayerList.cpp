@@ -52,6 +52,7 @@ namespace PlayerList
 
     void OnUpdate()
     {
+        return; 
         if(!g_engine->IsInGame() || !g_engine->IsConnected() || !Menu::enable)
             return;
         
@@ -91,6 +92,8 @@ namespace PlayerList
 
     void OnFireEvent(IGameEvent* event)
     {
+        return;
+        
         if(!g_engine->IsConnected() || !Menu::enable)
             return;
         
@@ -118,6 +121,8 @@ namespace PlayerList
 
     void OnDraw()
     {
+        return;
+    
         if(!g_engine->IsInGame() || !g_engine->IsConnected() || !Menu::enable)
             return;
 

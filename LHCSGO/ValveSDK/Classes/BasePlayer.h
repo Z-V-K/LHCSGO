@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "BaseEntity.h"
 #include "EHandle.h"
 #include "BaseCombatWeapon.h"
 
@@ -23,6 +22,10 @@ public:
      NETVAR(int32_t,     m_fFlags,           "DT_BasePlayer", "m_fFlags")  
      NETVAR(int32_t,     m_iObserverMode,    "DT_BasePlayer", "m_iObserverMode")  
      NETVAR(int32_t*,    m_hViewModel,       "DT_BasePlayer", "m_hViewModel[0]")
+     NETVAR(bool,        m_bIsDefusing,      "DT_BasePlayer", "m_bIsDefusing")
+     NETVAR(int32_t,     m_nTickBase,        "DT_BasePlayer", "m_nTickBase")
+     NETVAR(Vec3,        m_angEyeAngles,     "DT_CSPlayer",   "m_angEyeAngles")
+     PNETVAR(Vec3,        m_angEyeAnglesP,   "DT_CSPlayer",   "m_angEyeAngles")
      
      NETVAR(EHandle<BaseCombatWeapon>, m_hActiveWeapon, "DT_BaseCombatCharacter", "m_hActiveWeapon");
 
