@@ -68,8 +68,3 @@ bool BaseEntity::IsDroppedBomb()
 
     return !strcmp(model->szName, "models/weapons/w_ied_dropped.mdl");
 }
-
-const char* BaseEntity::GetRank()
-{
-    return (*g_playerresource)->GetCompetitiveRank(EntIndex());
-}

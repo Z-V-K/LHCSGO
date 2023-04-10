@@ -31,4 +31,6 @@ public:
 
      /* CUSTOM IMPLEMENTATIONS */
      __forceinline bool IsAlive() { return m_lifeState() == 0; }
+
+     const char* GetRank();
 };

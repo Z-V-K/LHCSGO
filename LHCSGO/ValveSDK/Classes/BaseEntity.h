@@ -39,5 +39,4 @@ public:
     bool IsWeapon();
     bool IsDefuseKit();
     bool IsDroppedBomb();
-    const char* GetRank();
 };
