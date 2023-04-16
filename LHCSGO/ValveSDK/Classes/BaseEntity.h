@@ -40,4 +40,6 @@ public:
     bool IsWeapon();
     bool IsDefuseKit();
     bool IsDroppedBomb();
+
+    bool operator==(BaseEntity* other) { return other->EntIndex() == EntIndex(); }
 };

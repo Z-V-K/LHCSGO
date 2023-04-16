@@ -66,7 +66,7 @@ namespace ESP
         CallbackManager::AddCallback(CallbackType::OnPaintTraverse, OnDraw);
         CallbackManager::AddCallback(CallbackType::OnPreFrameNetUpdateStart, OnUpdate);
         
-        const auto menu = MenuManager::CreateMenu("ESP");
+        const auto menu = MenuManager::CreateMenu("ESP", false);
         menu->AddBoolean("Enable ally", &Menu::enable_ally);
         menu->AddBoolean("Enable enemy", &Menu::enable_enemy);
         menu->AddBoolean("Bounding box ally", &Menu::bounding_box_ally);
@@ -80,11 +80,13 @@ namespace ESP
         menu->AddBoolean("Player health", &Menu::flag_health);
         menu->AddBoolean("Grenades", &Menu::grenades);
         menu->AddBoolean("Weapons", &Menu::weapons);
+        menu->AddBoolean("Show rank", &Menu::flag_rank);
     }
 
     void Delete()
     {
-
+        CallbackManager::RemoveCallback(CallbackType::OnPaintTraverse, OnDraw);
+        CallbackManager::RemoveCallback(CallbackType::OnPreFrameNetUpdateStart, OnUpdate);
     }
 
     void OnDraw()

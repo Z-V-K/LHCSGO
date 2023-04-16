@@ -9,4 +9,5 @@ namespace PlayerList
     void OnUpdate();
     void OnFireEvent(IGameEvent* event);
     void OnDraw();
+    void OnDrawSurface();
 }

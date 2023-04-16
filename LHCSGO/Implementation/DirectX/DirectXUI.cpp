@@ -10,7 +10,9 @@
 void DirectXUI::Initialize()
 {
     ImGui::CreateContext();
-
+    ImGui::GetIO().ConfigFlags = ImGuiConfigFlags_NoMouse;
+    ImGui::GetIO().ConfigFlags = ImGuiConfigFlags_NoMouseCursorChange;
+    
     ImGui_ImplWin32_Init(Direct3DDevice::game_hwnd);
     ImGui_ImplDX9_Init(g_device);
     

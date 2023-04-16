@@ -150,6 +150,7 @@
     <ClInclude Include="Features\EnginePrediction\EnginePrediction.h" />
     <ClInclude Include="Features\FeaturesManager.h" />
     <ClInclude Include="Features\Misc\PlayerList.h" />
+    <ClInclude Include="Features\Trigger\Trigger.h" />
     <ClInclude Include="Features\Visuals\ESP.h" />
     <ClInclude Include="Framework\Context.h" />
     <ClInclude Include="Framework\Hooks\InlineHook.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="Features\EnginePrediction\EnginePrediction.cpp" />
     <ClCompile Include="Features\FeaturesManager.cpp" />
     <ClCompile Include="Features\Misc\PlayerList.cpp" />
+    <ClCompile Include="Features\Trigger\Trigger.cpp" />
     <ClCompile Include="Features\Visuals\ESP.cpp" />
     <ClCompile Include="Framework\Context.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>

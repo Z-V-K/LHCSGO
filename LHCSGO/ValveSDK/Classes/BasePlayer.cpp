@@ -14,12 +14,12 @@ CUserCmd& BasePlayer::GetLastCommand()
 
 int BasePlayer::GetButtonDisabled()
 {
-    return *reinterpret_cast<CUserCmd***>((uintptr_t) this + (NetvarManager::GetOffset("DT_BasePlayer", "m_hViewEntity") - 0xC));
+    return *reinterpret_cast<int*>((uintptr_t) this + (NetvarManager::GetOffset("DT_BasePlayer", "m_hViewEntity") - 0xC));
 }
 
 int BasePlayer::GetButtonForced()
 {
-    return *reinterpret_cast<CUserCmd***>((uintptr_t) this + (NetvarManager::GetOffset("DT_BasePlayer", "m_hViewEntity") - 0x8));
+    return *reinterpret_cast<int*>((uintptr_t) this + (NetvarManager::GetOffset("DT_BasePlayer", "m_hViewEntity") - 0x8));
 }
 
 bool BasePlayer::PhysicsRunThink(int think_method)
