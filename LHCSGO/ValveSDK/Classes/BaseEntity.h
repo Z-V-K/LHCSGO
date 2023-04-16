@@ -27,6 +27,7 @@ public:
     NETVAR(EHandle<BaseEntity*>, m_hOwnerEntity, "DT_BaseEntity", "m_hOwnerEntity")
     NETVAR(int32_t, m_hEffectEntity, "DT_BaseEntity", "m_hEffectEntity")
     NETVAR(Vec3, m_vecVelocity, "DT_BaseEntity", "m_vecVelocity[0]")
+    NETVAR(int32_t, m_nSequence, "DT_BaseViewModel", "m_nSequence")
     
     /* CUSTOM IMPLEMENTATIONS */
     __forceinline Matrix3x4& m_rgflCoordinateFrame()

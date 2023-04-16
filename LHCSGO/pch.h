@@ -46,5 +46,6 @@
 #include <cinttypes>
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <cstring>
 
 #endif //PCH_H

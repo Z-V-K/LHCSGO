@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Features\EnginePrediction\EnginePrediction.h" />
     <ClInclude Include="Features\FeaturesManager.h" />
     <ClInclude Include="Features\Misc\PlayerList.h" />
     <ClInclude Include="Features\Visuals\ESP.h" />
@@ -187,8 +188,10 @@
     <ClInclude Include="ValveSDK\Classes\BasePlayer.h" />
     <ClInclude Include="ValveSDK\Classes\ClientClass.h" />
     <ClInclude Include="ValveSDK\Classes\CSPlayerResource.h" />
+    <ClInclude Include="ValveSDK\Classes\CUserCmd.h" />
     <ClInclude Include="ValveSDK\Classes\EHandle.h" />
     <ClInclude Include="ValveSDK\Classes\GlobalVars.h" />
+    <ClInclude Include="ValveSDK\Classes\MoveData.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec2.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec3.h" />
     <ClInclude Include="ValveSDK\Geometry\Vector\Vec4.h" />
@@ -205,12 +208,17 @@
     <ClInclude Include="ValveSDK\Interfaces\IGameEvent.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventListener.h" />
     <ClInclude Include="ValveSDK\Interfaces\IGameEventManager.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IGameMovement.h" />
     <ClInclude Include="ValveSDK\Interfaces\IHandleEntity.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IMdlCache.h" />
     <ClInclude Include="ValveSDK\Interfaces\IModelInfo.h" />
     <ClInclude Include="ValveSDK\Interfaces\IModelInfoClient.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IMoveHelper.h" />
     <ClInclude Include="ValveSDK\Interfaces\INetChannelInfo.h" />
     <ClInclude Include="ValveSDK\Interfaces\IPanel.h" />
+    <ClInclude Include="ValveSDK\Interfaces\IPrediction.h" />
     <ClInclude Include="ValveSDK\Interfaces\ISurface.h" />
+    <ClInclude Include="ValveSDK\Misc\CRC32.h" />
     <ClInclude Include="ValveSDK\Misc\ISurfaceColor.h" />
     <ClInclude Include="ValveSDK\Misc\Math.h" />
     <ClInclude Include="ValveSDK\Misc\Recv.h" />
@@ -220,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Features\EnginePrediction\EnginePrediction.cpp" />
     <ClCompile Include="Features\FeaturesManager.cpp" />
     <ClCompile Include="Features\Misc\PlayerList.cpp" />
     <ClCompile Include="Features\Visuals\ESP.cpp" />
@@ -479,6 +488,7 @@
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec2.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec3.cpp" />
     <ClCompile Include="ValveSDK\Geometry\Vector\Vec4.cpp" />
+    <ClCompile Include="ValveSDK\Misc\CRC32.cpp" />
     <ClCompile Include="ValveSDK\Misc\ISurfaceColor.cpp" />
     <ClCompile Include="ValveSDK\Misc\Math.cpp" />
     <ClCompile Include="ValveSDK\NetvarManager.cpp" />

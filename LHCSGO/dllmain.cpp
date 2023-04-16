@@ -38,7 +38,6 @@ DWORD WINAPI DLLAttach(LPVOID base)
 
 void DLLDetach()
 {
-    printf("Deleting DLL!\n");
     CallbackManager::ClearCallbacks();
     Hooks::Remove();
     FreeConsole();

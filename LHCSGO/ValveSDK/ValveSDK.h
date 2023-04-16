@@ -5,9 +5,13 @@
 #include "Interfaces/IClientEntityList.h"
 #include "Interfaces/IBaseClient.h"
 #include "Interfaces/IGameEventManager.h"
+#include "Interfaces/IGameMovement.h"
+#include "Interfaces/IMdlCache.h"
 #include "Interfaces/IModelInfoClient.h"
+#include "Interfaces/IMoveHelper.h"
 #include "Interfaces/ISurface.h"
 #include "Interfaces/IPanel.h"
+#include "Interfaces/IPrediction.h"
 
 class BasePlayer;
 
@@ -44,6 +48,10 @@ namespace ValveSDK
     inline IModelInfoClient* model_info_client = nullptr;
     inline GlobalVars* global_vars = nullptr;
     inline CSPlayerResource** player_resource = nullptr;
+    inline IPrediction* prediction = nullptr;
+    inline IGameMovement* movement = nullptr;
+    inline IMoveHelper* move_helper = nullptr;
+    inline IMDLCache* model_cache = nullptr;
 };
 
 #define g_baseclient     ValveSDK::base_client
@@ -56,6 +64,10 @@ namespace ValveSDK
 #define g_modelinfo      ValveSDK::model_info_client
 #define g_globalvars     ValveSDK::global_vars
 #define g_playerresource ValveSDK::player_resource
+#define g_prediction     ValveSDK::prediction
+#define g_movement       ValveSDK::movement
+#define g_movehelper     ValveSDK::move_helper
+#define g_mdlcache       ValveSDK::model_cache
 
 __forceinline BasePlayer* GetLocalPlayer()
 {
